@@ -1,3 +1,5 @@
+from django import forms
+from .models import Produk, Kategori
 
 class ProdukForm(forms.ModelForm):
     class Meta:
