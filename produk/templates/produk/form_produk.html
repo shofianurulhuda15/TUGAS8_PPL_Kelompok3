@@ -1,0 +1,20 @@
+{% extends 'produk/base.html' %}
+{% load static %}
+
+{% block title %}{{ judul_halaman }} - TechStore{% endblock %}
+
+{% block content %}
+<section class="container mt-5">
+    <h2 class="section-title mb-4">{{ judul_halaman }}</h2>
+    <div class="card">
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Simpan</button>
+                <a href="{% url 'daftar_produk' %}" class="btn btn-outline-secondary">Batal</a>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

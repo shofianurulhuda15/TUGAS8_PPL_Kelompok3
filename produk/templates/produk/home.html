@@ -1,0 +1,129 @@
+{% extends 'produk/base.html' %}
+{% load static %}
+
+{% block title %}Beranda - TechStore{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold mb-3">Temukan Teknologi Terbaik di TechStore</h1>
+        <p class="lead mb-4">Katalog lengkap produk elektronik dan gadget berkualitas dengan harga terbaik</p>
+        <a href="{% url 'daftar_produk' %}" class="btn btn-light btn-lg">Lihat Produk</a>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="container mt-5">
+    <h2 class="section-title text-center mb-5">Mengapa Memilih Kami?</h2>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="text-center">
+                <i class="fas fa-check-circle feature-icon"></i>
+                <h3>Produk Berkualitas</h3>
+                <p>Kami hanya menjual produk dengan kualitas terbaik dan garansi resmi.</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="text-center">
+                <i class="fas fa-shipping-fast feature-icon"></i>
+                <h3>Pengiriman Cepat</h3>
+                <p>Barang dikirim dalam waktu 1-3 hari kerja ke seluruh Indonesia.</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="text-center">
+                <i class="fas fa-headset feature-icon"></i>
+                <h3>Layanan Pelanggan</h3>
+                <p>Tim support kami siap membantu Anda 24/7 dengan pelayanan terbaik.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Products Section -->
+<section class="container mt-5">
+    <h2 class="section-title text-center mb-5">Produk Terbaru</h2>
+    <div class="row">
+        {% for produk in produk_terbaru %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                {% if produk.gambar %}
+                    <img src="{% static produk.gambar %}" class="card-img-top" alt="{{ produk.nama }}">
+                {% else %}
+                    <img src="https://source.unsplash.com/random/300x200/?{{ produk.nama }}" class="card-img-top" alt="{{ produk.nama }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ produk.nama }}</h5>
+                    <p class="price mb-2">Rp {{ produk.harga }}</p>
+                    <p class="card-text">{{ produk.deskripsi|truncatewords:20 }}</p>
+                    <a href="{% url 'detail_produk' produk.id %}" class="btn btn-primary">Lihat Detail</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <p>Tidak ada produk terbaru saat ini.</p>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="text-center mt-4">
+        <a href="{% url 'daftar_produk' %}" class="btn btn-outline-primary btn-lg">Lihat Semua Produk</a>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="container mt-5">
+    <h2 class="section-title text-center mb-5">Testimoni Pelanggan</h2>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                    </div>
+                    <p class="card-text">"Produk yang saya beli berkualitas sangat baik dan sesuai dengan deskripsi. Pengiriman juga cepat. Sangat puas!"</p>
+                    <p class="fw-bold mb-0">Budi Santoso</p>
+                    <small class="text-muted">Jakarta</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                    </div>
+                    <p class="card-text">"Pelayanan customer service sangat baik dan responsive. Barang yang dikirim juga aman dan sesuai pesanan."</p>
+                    <p class="fw-bold mb-0">Rani Wijaya</p>
+                    <small class="text-muted">Bandung</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star-half-alt text-warning"></i>
+                    </div>
+                    <p class="card-text">"Harga produk sangat kompetitif dibandingkan toko lain. Proses pemesanan juga mudah dan cepat."</p>
+                    <p class="fw-bold mb-0">Dian Pratama</p>
+                    <small class="text-muted">Surabaya</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

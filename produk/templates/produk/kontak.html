@@ -1,0 +1,127 @@
+{% extends 'produk/base.html' %}
+{% block title %}Kontak Kami - TechStore{% endblock %}
+
+{% block content %}
+<!-- Header Section -->
+<section class="hero">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold mb-3">Hubungi Kami</h1>
+        <p class="lead">Ada pertanyaan atau butuh bantuan? Jangan ragu untuk menghubungi kami</p>
+    </div>
+</section>
+
+<!-- Contact Information -->
+<section class="container mt-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="contact-method">
+                <div class="text-center mb-4">
+                    <i class="fas fa-map-marker-alt feature-icon"></i>
+                    <h3>Alamat Kami</h3>
+                </div>
+                <p class="text-center">Jl. Anomali No. 123, Jakarta Tenggara<br>Indonesia 12345</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="contact-method">
+                <div class="text-center mb-4">
+                    <i class="fas fa-phone feature-icon"></i>
+                    <h3>Telepon</h3>
+                </div>
+                <p class="text-center">(021) 1234-5678<br>0812-3456-7890</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="contact-method">
+                <div class="text-center mb-4">
+                    <i class="fas fa-envelope feature-icon"></i>
+                    <h3>Email</h3>
+                </div>
+                <p class="text-center">info@techstore.com<br>support@techstore.com</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form & Map -->
+<section class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <h2 class="section-title mb-4">Kirim Pesan</h2>
+            <div class="contact-form">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="nama" class="form-label">Nama Lengkap</label>
+                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama lengkap Anda">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan alamat email Anda">
+                    </div>
+                    <div class="mb-3">
+                        <label for="subjek" class="form-label">Subjek</label>
+                        <input type="text" class="form-control" id="subjek" name="subjek" placeholder="Masukkan subjek pesan">
+                    </div>
+                    <div class="mb-3">
+                        <label for="pesan" class="form-label">Pesan</label>
+                        <textarea class="form-control" id="pesan" name="pesan" rows="5" placeholder="Tulis pesan Anda di sini"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h2 class="section-title mb-4">Lokasi Kami</h2>
+            <div class="ratio ratio-4x3 rounded shadow">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253840.478949799!2d106.6894312!3d-6.2297465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e945e34b9d%3A0x5371bf0fdad786a2!2sJakarta!5e0!3m2!1sen!2sid!4v1682317593327!5m2!1sen!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="container mt-5">
+    <h2 class="section-title text-center mb-5">Pertanyaan Umum</h2>
+    <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Bagaimana cara melakukan pemesanan?
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Untuk melakukan pemesanan, pilih produk yang diinginkan, klik "Tambah ke Keranjang", lalu checkout dan isi data pengiriman.
+                </div>
+            </div>
+        </div>
+        <!-- Tambahan FAQ lainnya -->
+    </div>
+</section>
+
+<!-- Store Hours -->
+<section class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h3 class="card-title mb-4">Jam Operasional Toko</h3>
+                    <div class="row mb-2">
+                        <div class="col-6 text-end fw-bold">Senin - Jumat:</div>
+                        <div class="col-6 text-start">09:00 - 21:00</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-6 text-end fw-bold">Sabtu:</div>
+                        <div class="col-6 text-start">10:00 - 22:00</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-end fw-bold">Minggu:</div>
+                        <div class="col-6 text-start">11:00 - 20:00</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

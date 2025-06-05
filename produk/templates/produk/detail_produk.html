@@ -1,0 +1,195 @@
+{% extends 'produk/base.html' %}
+{% load static produk_tags %}
+
+{% block title %}{{ produk.nama }} - TechStore{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Beranda</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'daftar_produk' %}">Produk</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ produk.nama }}</li>
+        </ol>
+    </nav>
+    
+    <div class="row mt-4">
+        <!-- Product Image -->
+        <div class="col-md-6 mb-4">
+            {% if produk.gambar %}
+                <img src="{% static produk.gambar %}" class="img-fluid product-detail-img" alt="{{ produk.nama }}">
+            {% else %}
+                <img src="https://source.unsplash.com/random/600x600/?{{ produk.nama }}" class="img-fluid product-detail-img" alt="{{ produk.nama }}">
+            {% endif %}
+        </div>
+        
+        <!-- Product Details -->
+        <div class="col-md-6">
+            <h1 class="mb-3">{{ produk.nama }}</h1>
+            <div class="mb-3">
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star-half-alt text-warning"></i>
+                <span class="ms-2">(4.5/5 - 120 ulasan)</span>
+            </div>
+            <h2 class="price mb-4">Rp {{ produk.harga }}</h2>
+            <p class="mb-4">{{ produk.deskripsi }}</p>
+            
+            <div class="d-flex align-items-center mb-4">
+                <div class="me-3">
+                    <label for="quantity" class="form-label">Jumlah:</label>
+                    <input type="number" class="form-control" id="quantity" min="1" value="1">
+                </div>
+                <div>
+                    <label for="color" class="form-label">Warna:</label>
+                    <select class="form-select" id="color">
+                        <option value="black">Hitam</option>
+                        <option value="silver">Silver</option>
+                        <option value="white">Putih</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="d-grid gap-2 d-md-block mb-4">
+                <button class="btn btn-primary me-md-2" type="button">
+                    <i class="fas fa-shopping-cart me-2"></i> Tambah ke Keranjang
+                </button>
+                <button class="btn btn-outline-primary" type="button">
+                    <i class="fas fa-heart me-2"></i> Tambah ke Wishlist
+                </button>
+            </div>
+            
+            <div class="mb-4">
+                <div class="d-flex align-items-center mb-2">
+                    <i class="fas fa-check-circle text-success me-2"></i>
+                    <span>Stok Tersedia</span>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                    <i class="fas fa-truck me-2"></i>
+                    <span>Pengiriman Gratis untuk Pembelian di atas Rp 1.000.000</span>
+                </div>
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-shield-alt me-2"></i>
+                    <span>Garansi Resmi 1 Tahun</span>
+                </div>
+            </div>
+            
+            <div class="mb-4">
+                <h6>Bagikan:</h6>
+                <div class="d-flex">
+                    <a href="#" class="me-2 text-primary"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="me-2 text-info"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="me-2 text-danger"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-success"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Product Description, Specs, Reviews Tabs -->
+    <div class="mt-5">
+        <ul class="nav nav-tabs" id="productTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Deskripsi</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="specifications-tab" data-bs-toggle="tab" data-bs-target="#specifications" type="button" role="tab" aria-controls="specifications" aria-selected="false">Spesifikasi</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">Ulasan (120)</button>
+            </li>
+        </ul>
+        <div class="tab-content p-4 bg-white" id="productTabsContent">
+            <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                <h4>Detail Produk</h4>
+                <p>{{ produk.deskripsi }}</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel felis euismod, lobortis nunc at, cursus neque.</p>
+                <p>Fitur Utama:</p>
+                <ul>
+                    <li>Performa tinggi untuk multitasking</li>
+                    <li>Layar beresolusi tinggi dengan warna yang akurat</li>
+                    <li>Sistem pendingin yang efisien</li>
+                    <li>Baterai tahan lama hingga 8 jam penggunaan</li>
+                    <li>Desain yang ringan dan portabel</li>
+                </ul>
+                <p>Isi Paket:</p>
+                <ul>
+                    <li>{{ produk.nama }}</li>
+                    <li>Adaptor Daya</li>
+                    <li>Manual Book & Warranty Card</li>
+                    <li>Aksesoris tambahan</li>
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="specifications" role="tabpanel" aria-labelledby="specifications-tab">
+                <h4>Spesifikasi Teknis</h4>
+                <div class="specification">
+                    {% for spec in produk.spesifikasi %}
+                    <div class="row">
+                        {% with spec_parts=spec|split:":" %}
+                        <div class="col-md-4 fw-bold">{{ spec_parts.0 }}</div>
+                        <div class="col-md-8">{{ spec_parts.1 }}</div>
+                        {% endwith %}
+                    </div>
+                    <hr>
+                    {% empty %}
+                    <p>Tidak ada spesifikasi tersedia.</p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4>Ulasan Pelanggan</h4>
+                    <button class="btn btn-outline-primary">Tulis Ulasan</button>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <div>
+                                <h5 class="mb-0">Ahmad Rahman</h5>
+                                <div>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                </div>
+                            </div>
+                            <small class="text-muted">2 minggu yang lalu</small>
+                        </div>
+                        <p class="card-text">Laptop ini sangat cepat dan sesuai dengan harapan saya.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Related Products -->
+    <section class="mt-5">
+        <h3 class="section-title mb-4">Produk Terkait</h3>
+        <div class="row">
+            {% for related in produk_terkait %}
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    {% if related.gambar %}
+                        <img src="{% static related.gambar %}" class="card-img-top" alt="{{ related.nama }}">
+                    {% else %}
+                        <img src="https://source.unsplash.com/random/300x200/?{{ related.nama }}" class="card-img-top" alt="{{ related.nama }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ related.nama }}</h5>
+                        <p class="price mb-2">Rp {{ related.harga }}</p>
+                        <a href="{% url 'detail_produk' related.id %}" class="btn btn-sm btn-primary">Lihat Detail</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-md-12">
+                <p class="text-center">Tidak ada produk terkait saat ini.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}
